@@ -1,0 +1,242 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  /* Warm Minimalist Design System */
+  --primary: #FF6B4A;
+  --primary-foreground: #FAFAF8;
+  --sidebar-primary: #FF6B4A;
+  --sidebar-primary-foreground: #FAFAF8;
+  --chart-1: #FFB6A3;
+  --chart-2: #FF8B6F;
+  --chart-3: #FF6B4A;
+  --chart-4: #E55A3A;
+  --chart-5: #CC4A2A;
+  --radius: 0.75rem;
+  --background: #FAFAF8;
+  --foreground: #1A1A18;
+  --card: #FFFFFF;
+  --card-foreground: #1A1A18;
+  --popover: #FFFFFF;
+  --popover-foreground: #1A1A18;
+  --secondary: #F5F3F0;
+  --secondary-foreground: #3D3D3A;
+  --muted: #EBE8E5;
+  --muted-foreground: #6B6B68;
+  --accent: #6B9E7F;
+  --accent-foreground: #FFFFFF;
+  --destructive: #DC2626;
+  --destructive-foreground: #FFFFFF;
+  --border: #E5E2DF;
+  --input: #F5F3F0;
+  --ring: #FF6B4A;
+  --sidebar: #FAFAF8;
+  --sidebar-foreground: #1A1A18;
+  --sidebar-accent: #F5F3F0;
+  --sidebar-accent-foreground: #FF6B4A;
+  --sidebar-border: #E5E2DF;
+  --sidebar-ring: #FF6B4A;
+}
+
+.dark {
+  --primary: #FF6B4A;
+  --primary-foreground: #1A1A18;
+  --sidebar-primary: #FF6B4A;
+  --sidebar-primary-foreground: #1A1A18;
+  --background: #0F0F0E;
+  --foreground: #F5F3F0;
+  --card: #1A1A18;
+  --card-foreground: #F5F3F0;
+  --popover: #1A1A18;
+  --popover-foreground: #F5F3F0;
+  --secondary: #2A2A28;
+  --secondary-foreground: #D0D0CC;
+  --muted: #3D3D3A;
+  --muted-foreground: #9B9B98;
+  --accent: #6B9E7F;
+  --accent-foreground: #0F0F0E;
+  --destructive: #FF6B6B;
+  --destructive-foreground: #0F0F0E;
+  --border: #3D3D3A;
+  --input: #2A2A28;
+  --ring: #FF6B4A;
+  --chart-1: #FFB6A3;
+  --chart-2: #FF8B6F;
+  --chart-3: #FF6B4A;
+  --chart-4: #E55A3A;
+  --chart-5: #CC4A2A;
+  --sidebar: #1A1A18;
+  --sidebar-foreground: #F5F3F0;
+  --sidebar-accent: #2A2A28;
+  --sidebar-accent-foreground: #FF6B4A;
+  --sidebar-border: #3D3D3A;
+  --sidebar-ring: #FF6B4A;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  [type="reset"]:not(:disabled),
+  a[href],
+  select:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled) {
+    @apply cursor-pointer;
+  }
+}
+
+@layer components {
+  /**
+   * Custom container utility that centers content and adds responsive padding.
+   *
+   * This overrides Tailwind's default container behavior to:
+   * - Auto-center content (mx-auto)
+   * - Add responsive horizontal padding
+   * - Set max-width for large screens
+   *
+   * Usage: <div className="container">...</div>
+   *
+   * For custom widths, use max-w-* utilities directly:
+   * <div className="max-w-6xl mx-auto px-4">...</div>
+   */
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem; /* 16px - mobile padding */
+    padding-right: 1rem;
+  }
+
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem; /* 24px - tablet padding */
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem; /* 32px - desktop padding */
+      padding-right: 2rem;
+      max-width: 1280px; /* Standard content width */
+    }
+  }
+
+  /* Warm Minimalist Design Tokens */
+  .chat-bubble-own {
+    @apply bg-gradient-to-br from-[#FF6B4A] to-[#E55A3A] text-white rounded-3xl rounded-br-none shadow-sm hover:shadow-md transition-all duration-200;
+  }
+
+  .chat-bubble-other {
+    @apply bg-[#F5F3F0] text-foreground rounded-3xl rounded-bl-none shadow-sm hover:shadow-md transition-all duration-200;
+  }
+
+  .sidebar-item-active {
+    @apply bg-[#F5F3F0] border-l-4 border-[#FF6B4A] text-foreground;
+  }
+
+  .sidebar-item-hover {
+    @apply hover:bg-[#F5F3F0] transition-colors duration-200;
+  }
+
+  .input-focus {
+    @apply focus:ring-2 focus:ring-[#FF6B4A] focus:ring-offset-0 transition-all duration-200;
+  }
+}
+
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+/* Typography System */
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-weight: 700;
+}
+
+.text-display {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.text-heading {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.text-body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.text-label {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.4;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
